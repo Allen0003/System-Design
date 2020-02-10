@@ -1,0 +1,19 @@
+
+Event Sourcing system: 1. Events, 2. Calculators, 3. Aggregates and 4. Reactors.
+
+1. Events 
+2. Aggregates represent the current state of the application.
+3. Calculators read events and update aggregates accordingly.
+4. Reactors “react” to events as they are created. 
+
+In other words,
+
+1. Events to provide a history
+2. Aggregates to represent the current state of the application
+3. Calculator to update the state of the application
+4. Reactors to trigger side effects as events happen
+
+
+https://kickstarter.engineering/event-sourcing-made-simple-4a2625113224
+
+All changes to an application state are stored as a sequence of events.
