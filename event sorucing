@@ -23,3 +23,8 @@ In other words,
 https://kickstarter.engineering/event-sourcing-made-simple-4a2625113224
 
 All changes to an application state are stored as a sequence of events.
+
+
+"Axon" works on the concept of commands and events. 
+1. Commands are user-initiated actions that can change the state of your aggregate. 
+2. Events are the actual changing of that state.
