@@ -1,4 +1,10 @@
 
+
+"CQS" states that every method should either be a command that performs an action or a query that retrieves a result. The concerns shouldn’t be mixed.
+Additionally, any ‘microservices’ should be split in write and read components too.
+
+We never have to delete or update events (and no longer require the ‘UD’ in ‘CRUD’). We don’t need to synchronise resources as our event store is immutable. 
+
 Event Sourcing system: 1. Events, 2. Calculators, 3. Aggregates and 4. Reactors.
 
 1. Events 
