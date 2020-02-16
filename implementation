@@ -1,5 +1,7 @@
 
 
+1. load-balancing
+
 DNS
 
 A DNS server is a computer server that contains a database of public IP addresses and their associated hostnames, and in most cases serves to resolve, or translate, those names to IP addresses as requested.
@@ -7,3 +9,14 @@ A DNS server is a computer server that contains a database of public IP addresse
 Nginx
 
 rount your url to different ip addresses
+
+
+2. catch
+
+
+CDN content delivery network
+
+A content delivery network or content distribution network (CDN) is a geographically distributed network of proxy servers and their data centers.
+
+catch your content such as HTML, css and Javascript
+
