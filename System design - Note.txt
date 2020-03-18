@@ -66,3 +66,87 @@ II. could not preload
 
 PS: If you do something time-consuming, try to do it always asynchronously. 
 
+
+
+
+
+System design - note
+
+Q: a web service massively scalable --> 
+A: lengthy 1. Clones 2. Database 3. Cache 4. Asynchronism
+
+1. Clones
+Load Balancer
+That leads to the first golden rule for scalability: 
+every server contains exactly the same codebase and does not store any user-related data, like sessions or profile pictures, on local disc or memory. 
+
+Sessions need to be stored in a centralized data store which is accessible to all your application servers. 
+Such as an external database or an external persistent cache, like Redis.
+
+Using load balancer could horizontally scale and you can already serve thousands of concurrent requests.
+
+
+2. Database
+
+I. Using master-slave replication (read from slaves, write to master)
+and upgrade your master server by adding RAM
+
+II. (Better) means to denormalize right from the beginning and include no more Joins in any database query.
+switch to a better and easier to scale NoSQL database like MongoDB or CouchDB.
+Joins will now need to be done in your application code.
+
+But even if you successfully switch to the latest and greatest NoSQL database and 
+let your app do the dataset-joins, soon your database requests will again be slower and slower. 
+You will need to introduce a cache.
+
+
+3. Cache
+
+Q: Your users still have to suffer slow page requests when a lot of data is fetched from the database.
+A: cache. like Memcached or Redis
+
+Implementation: 
+
+I. Cached Database Queries
+you store the result dataset in cache. A hashed version of your query is the cache key.
+
+II. Cached Objects
+
+Now, do the following: when your class has finished the “assembling” of the data array, 
+directly store the data array in the cache!
+
+Some ideas of objects to cache:
+
+i. user sessions (never use the database!)
+ii. fully rendered blog articles
+
+
+4. Asynchronism
+
+I. Referring to a web app this means doing the time-consuming work in advance and 
+serving the finished work with a low request time.
+
+Just imagine the scalability of your website if the script would upload these pre-rendered HTML 
+pages to AWS S3 or Cloudfront or another Content Delivery Network! 
+Your website would be super responsive and could handle millions of visitors per hour!
+
+II. could not preload 
+--> RabbitMQ is one of many systems which help to implement async processing.
+
+
+PS: If you do something time-consuming, try to do it always asynchronously. 
+
+
+
+****** A Plain English Introduction to CAP Theorem *****
+
+CAP Theorem:
+You can pick only two of:
+
+1. Consistency: You customers, once they have updated information with you, will always get the most updated information when they call subsequently. No matter how quickly they call back
+2. Availability: Remembrance Inc will always be available for calls until any one of you(you or your wife) report to work.
+3. Partition Tolerance: Remembrance Inc will work even if there is a communication loss between you and your wife!
+
+
+
+
