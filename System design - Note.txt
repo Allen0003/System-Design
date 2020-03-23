@@ -150,3 +150,30 @@ You can pick only two of:
 
 
 
+***********  Introduction to architecting systems for scale. ****************
+
+Cache invalidation
+
+You can consider relying fully on database caching, adding aggressive expirations to the cached data, or reworking your application's logic to avoid the issue (e.g. instead of DELETE FROM a WHERE..., retrieve all the items which match the criteria, invalidate the corresponding cache rows and then delete the rows by their primary key explicitly).
+
+
+Platform layer
+
+1. separating the platform and web application allow you to scale the pieces independently.
+2. a sometimes underappreciated aspect of platform layers is that they make it easier to scale an organization.
+
+EX: you have a web site that serves some pages and does some very heavy calculations for some requests.
+
+If both of these functions were on the web server, then a calculation could slow the response time of the web pages. Having it on a seperate server avoids this problem.
+
+In our architecture drawings we call this layer the application server or business layer rather than the platform layer. We call Azure or the .net framework a platform.
+
+
+
+
+
+
+
+
+
+
