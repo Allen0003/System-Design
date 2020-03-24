@@ -148,6 +148,15 @@ You can pick only two of:
 3. Partition Tolerance: Remembrance Inc will work even if there is a communication loss between you and your wife!
 
 
+1. Availability - will a request made to the data store always eventually complete?
+2. Consistency - will all executions of reads and writes seen by all nodes be atomic or linearizably consistent?
+3. Partition tolerance - the network is allowed to drop any messages.
+
+What is a partition?
+
+The term is sometimes used to refer to a period during which no messages are delivered between two sets of nodes.
+
+
 
 
 ***********  Introduction to architecting systems for scale. ****************
