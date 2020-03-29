@@ -183,6 +183,8 @@ In our architecture drawings we call this layer the application server or busine
 
 
 
+***************** Transactions Across Datacenters  *****************
 
+multihoming --> is the practice of connecting a host or a computer network to more than one network. This can be done in order to increase reliability or performance.
 
 
