@@ -1,0 +1,6 @@
+Using hasing function for shading
+Cassandra and MongoDB use MD5 as the Hash function for Sharding. For Cassandra, 
+you can read it here and for MongoDB here (Btw if you don’t know what a hash function is, then read about it here my friend, :P)
+
+https://docs.datastax.com/en/cassandra-oss/3.x/cassandra/architecture/archPartitionerAbout.html
+https://docs.mongodb.com/manual/reference/command/dbHash/
