@@ -4,3 +4,16 @@ you can read it here and for MongoDB here (Btw if you don’t know what a hash f
 
 https://docs.datastax.com/en/cassandra-oss/3.x/cassandra/architecture/archPartitionerAbout.html
 https://docs.mongodb.com/manual/reference/command/dbHash/
+
+
+Database Partitioning
+1. Partition based on UserID
+Here we can keep all photos of a user on the same shard. So we’ll find the shard number by UserID % 10 and then store the data there. To uniquely identify any photo in our system, we can append the shard number with each PhotoID.
+Problems:
+How would we handle hot users? Several people follow such hot users, and a lot of other people see any photo they upload.
+Some users will have a lot of photos compared to others, thus making a non-uniform distribution of storage.
+What if we cannot store all pictures of a user on one shard? If we distribute photos of a user onto multiple shards, will it cause higher latencies?
+Storing all photos of a user on one shard can cause issues like unavailability of all of the user’s data if that shard is down or higher latency if it is serving high load etc.
+2 Partition based on PhotoID
+If we can generate unique PhotoIDs first and then find a shard number through “PhotoID % 10”, the above problems will have been solved. We would not need to append ShardID with PhotoID in this case, as PhotoID will itself be unique throughout the system.
+
