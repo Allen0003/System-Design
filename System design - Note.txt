@@ -1,5 +1,16 @@
 
 
+cache 
+
+Handling thundering herd
+
+One corner case is when multiple requests having the same cache miss. For example, suddenly 100K Twitter users reached the server from a link that went viral, but some of the contents are not in cache. Then the cache miss happens in parallel, all of such requests will try to query DB. DB will then face a load of 100K/s read.
+
+The solution is a lease. The first cache miss will grant the app server a lease token. Only the app server having the token for a key can query DB and fill the cache. After a token is issued, all subsequent requests to the cache will be asked to retry after a period. The lease expires after a while to avoid deadlock.
+
+cache lease ******* 
+
+
 https://www.chainnews.com/zh-hant/articles/278820219238.htm
 
 所以，簡單小結，第一步要做的：
